@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://de4hpboa4nf3a"]
+
+[ext_resource type="Texture2D" uid="uid://bae80t1tmudea" path="res://Assets/Prototyping/CookieProto.png" id="1_8wkst"]
+[ext_resource type="Script" path="res://Entities/Food/cookie.gd" id="1_unik1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8yxpj"]
+radius = 71.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0qmc"]
+radius = 63.0714
+
+[node name="Cookie" type="RigidBody2D"]
+script = ExtResource("1_unik1")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="PlayerDetectCollider" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_8yxpj")
+debug_color = Color(0.995814, 0, 0.198494, 0.42)
+
+[node name="CookieProtoSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_8wkst")
+
+[node name="CookieCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d0qmc")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

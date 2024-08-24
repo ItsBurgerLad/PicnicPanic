@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://barxlcex15aan"]
+
+[ext_resource type="Texture2D" uid="uid://dqd3j26f4ju65" path="res://Assets/Sprites/BG/BarrierBush.png" id="1_a3ts5"]
+
+[node name="BarrierBush" type="StaticBody2D"]
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a3ts5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(133, 357, 115, 300, 109, 240, 119, 182, 146, 150, 185, 127, 233, 111, 251, 55, 305, 21, 335, 33, 379, 16, 415, -27, 461, -27, 496, -32, 502, -129, 551, -188, 620, -263, 641, -263, 637, 362, 132, 369)

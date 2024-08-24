@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyh70ocjg51lc"]
+
+[ext_resource type="Texture2D" uid="uid://bnjjb4j8loy3o" path="res://Assets/Sprites/Enemies/Leg2_Transparent.png" id="1_s7hef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdhew"]
+size = Vector2(723, 115)
+
+[sub_resource type="Animation" id="Animation_vum4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3q1y5"]
+resource_name = "stomp"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.249889, 0.5, 1.5),
+"transitions": PackedFloat32Array(2.46, 1, 0.66, 2.07),
+"update": 0,
+"values": [Vector2(0, -1650), Vector2(0, 0), Vector2(0, 0), Vector2(0, -1650)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l87pa"]
+_data = {
+"RESET": SubResource("Animation_vum4t"),
+"stomp": SubResource("Animation_3q1y5")
+}
+
+[node name="Leg 2" type="Node2D"]
+
+[node name="Leg2" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Leg2"]
+position = Vector2(197.352, 817.514)
+rotation = 1.5708
+scale = Vector2(1.26487, 1.26487)
+texture = ExtResource("1_s7hef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leg2"]
+position = Vector2(178.5, 1457)
+shape = SubResource("RectangleShape2D_kdhew")
+debug_color = Color(0.977818, 0.00355162, 0.398394, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Leg2"]
+libraries = {
+"": SubResource("AnimationLibrary_l87pa")
+}
+autoplay = "stomp"

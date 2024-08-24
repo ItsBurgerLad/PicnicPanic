@@ -1,0 +1,181 @@
+[gd_scene load_steps=23 format=3 uid="uid://dnvw1lv33usv1"]
+
+[ext_resource type="Script" path="res://Entities/Player/ant_player_character.gd" id="1_dcs1k"]
+[ext_resource type="Texture2D" uid="uid://fwl74qwv2psb" path="res://Assets/Sprite Sheets/Finals/Ant_CarryFall.png" id="2_eloiq"]
+[ext_resource type="Texture2D" uid="uid://xwkaiyvok1tf" path="res://Assets/Sprite Sheets/Finals/Ant_Idle.png" id="2_n03h1"]
+[ext_resource type="Texture2D" uid="uid://b8dg6ltewspgj" path="res://Assets/Sprites/Food/Cheese_Trasparent.png" id="2_qealo"]
+[ext_resource type="Texture2D" uid="uid://c1tdl4tlvn53f" path="res://Assets/Sprite Sheets/Finals/Ant_CarryJump.png" id="3_a3pnk"]
+[ext_resource type="Texture2D" uid="uid://caj5it7fxxrdj" path="res://Assets/Sprite Sheets/Finals/Ant_CarryIdle.png" id="3_vgwic"]
+[ext_resource type="Texture2D" uid="uid://cmhti72svr2jt" path="res://Assets/Sprite Sheets/Finals/Ant_CarryRun.png" id="4_8j0k1"]
+[ext_resource type="Texture2D" uid="uid://cilmim3otv277" path="res://Assets/Sprite Sheets/Finals/Ant_Fall.png" id="5_a6w8s"]
+[ext_resource type="Texture2D" uid="uid://d0dj2nrmq1ube" path="res://Assets/Sprite Sheets/Finals/Ant_Jump.png" id="7_b8uco"]
+[ext_resource type="Texture2D" uid="uid://icbobn3xwet3" path="res://Assets/Sprite Sheets/Finals/Ant_Run.png" id="8_87s2w"]
+[ext_resource type="AudioStream" uid="uid://mm8le8v5fsrp" path="res://Assets/Audio/confirmation_003.ogg" id="12_5spko"]
+[ext_resource type="AudioStream" uid="uid://c6s2mjx5u4rl4" path="res://Assets/Audio/phaserUp4.ogg" id="13_c1gsl"]
+[ext_resource type="AudioStream" uid="uid://c6ggdt7xphcll" path="res://Assets/Audio/drop_004.ogg" id="14_m2jv7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4olpk"]
+atlas = ExtResource("4_8j0k1")
+region = Rect2(0, 0, 144, 258)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twc4n"]
+atlas = ExtResource("4_8j0k1")
+region = Rect2(144, 0, 144, 258)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os8xk"]
+atlas = ExtResource("4_8j0k1")
+region = Rect2(288, 0, 144, 258)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7feft"]
+atlas = ExtResource("8_87s2w")
+region = Rect2(0, 0, 145, 258)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ocj"]
+atlas = ExtResource("8_87s2w")
+region = Rect2(145, 0, 145, 258)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qow47"]
+atlas = ExtResource("8_87s2w")
+region = Rect2(290, 0, 145, 258)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfwta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_eloiq")
+}],
+"loop": true,
+"name": &"carry_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vgwic")
+}],
+"loop": true,
+"name": &"carry_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a3pnk")
+}],
+"loop": true,
+"name": &"carry_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4olpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twc4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os8xk")
+}],
+"loop": true,
+"name": &"carry_run",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_a6w8s")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n03h1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_b8uco")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7feft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qow47")
+}],
+"loop": true,
+"name": &"run",
+"speed": 14.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snetm"]
+radius = 40.5
+height = 192.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3lt64"]
+radius = 32.0
+height = 178.0
+
+[node name="AntPlayerCharacter" type="CharacterBody2D"]
+collision_mask = 30
+script = ExtResource("1_dcs1k")
+dash_speed = 1250.0
+
+[node name="CheeseSprite" type="Sprite2D" parent="."]
+position = Vector2(313, -429)
+texture = ExtResource("2_qealo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kfwta")
+animation = &"carry_idle"
+
+[node name="AntCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 16)
+shape = SubResource("CapsuleShape2D_snetm")
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="CarryRequestTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="DashAgainTimer" type="Timer" parent="."]
+wait_time = 0.65
+
+[node name="HazardDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HazardCollider" type="CollisionShape2D" parent="HazardDetector"]
+position = Vector2(0, 17)
+shape = SubResource("CapsuleShape2D_3lt64")
+debug_color = Color(0.982701, 0.13021, 0, 0.42)
+
+[node name="CarrySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_5spko")
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_c1gsl")
+volume_db = -9.0
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_m2jv7")
+volume_db = -9.0
+
+[connection signal="timeout" from="CarryRequestTimer" to="." method="_on_carry_request_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashAgainTimer" to="." method="_on_dash_again_timer_timeout"]
+[connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]

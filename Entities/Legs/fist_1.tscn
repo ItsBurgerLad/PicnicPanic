@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://brsp4q6go007q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d17yd"]
+size = Vector2(239, 680)
+
+[node name="Fist1" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+position = Vector2(87.5, 330)
+shape = SubResource("RectangleShape2D_d17yd")
+debug_color = Color(0.983286, 0, 0.354438, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 173.0
+offset_bottom = 590.0
+color = Color(0.87451, 0.654902, 0.486275, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = 496.0
+offset_right = 176.0
+offset_bottom = 536.0
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -43.0
+offset_top = 534.0
+offset_right = 214.0
+offset_bottom = 680.0
+color = Color(0.87451, 0.654902, 0.486275, 1)

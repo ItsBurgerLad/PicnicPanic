@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpjjyqhp6v6ke"]
+
+[ext_resource type="Script" path="res://Entities/Ant Hill/ant_hill.gd" id="1_xfq52"]
+[ext_resource type="Texture2D" uid="uid://dyp33rhslcmub" path="res://Assets/Sprites/Anthill/Anthill_Transparent.png" id="2_h6b6r"]
+
+[node name="AntHill" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_xfq52")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(360, 0)
+rotation = 1.5708
+texture = ExtResource("2_h6b6r")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2, 639, 686, 640, 683, 597, 659, 605, 634, 580, 592, 573, 580, 580, 557, 522, 511, 495, 498, 461, 471, 442, 456, 431, 452, 404, 437, 404, 438, 380, 406, 348, 392, 335, 379, 317, 354, 309, 345, 314, 312, 294, 296, 289, 267, 261, 0, 208)

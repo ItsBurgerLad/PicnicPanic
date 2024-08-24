@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsc60lmlngwsa"]
+
+[ext_resource type="Texture2D" uid="uid://drr6ledaeho4n" path="res://Assets/UI/MainMenuBG.png" id="1_gkk28"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_y3p42"]
+[ext_resource type="Texture2D" uid="uid://jllkqnfwdeg0" path="res://Assets/UI/PicnicPanic_Logo.png" id="2_2kk2e"]
+[ext_resource type="Texture2D" uid="uid://cw8m3pxcwy6oq" path="res://Assets/UI/Leaf_Particle.png" id="2_lcomr"]
+[ext_resource type="Texture2D" uid="uid://dqd3j26f4ju65" path="res://Assets/Sprites/BG/BarrierBush.png" id="3_87bt6"]
+[ext_resource type="Texture2D" uid="uid://bm7m6hwyome73" path="res://Assets/UI/StartButton_Normal.png" id="5_oimi2"]
+[ext_resource type="Texture2D" uid="uid://bh55x5c5v64p1" path="res://Assets/UI/StartButton_Pressed.png" id="6_k03g2"]
+[ext_resource type="Texture2D" uid="uid://c6lhvthfm0i2o" path="res://Assets/UI/StartButton_Hover.png" id="7_imxj1"]
+[ext_resource type="Texture2D" uid="uid://dwf8u5k0n0yxi" path="res://Assets/UI/StartButton_Focused.png" id="8_rfvxu"]
+[ext_resource type="Texture2D" uid="uid://ctp6j68u311uy" path="res://Assets/UI/HowTo_Normal.png" id="10_6r13r"]
+[ext_resource type="Texture2D" uid="uid://c3wvqwgjy4882" path="res://Assets/UI/HowTo_Pressed.png" id="11_uk8dh"]
+[ext_resource type="Texture2D" uid="uid://cnr188xrel5ud" path="res://Assets/UI/HowTo_Hover.png" id="12_3nsh1"]
+[ext_resource type="Texture2D" uid="uid://62lk6asmaif8" path="res://Assets/UI/HowTo_Focused.png" id="13_8vcsc"]
+
+[node name="MainMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 50
+script = ExtResource("1_y3p42")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_gkk28")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 12
+lifetime = 10.0
+randomness = 1.0
+texture = ExtResource("2_lcomr")
+initial_velocity_min = 432.09
+initial_velocity_max = 940.31
+angular_velocity_min = -42.99
+angular_velocity_max = 214.93
+angle_min = -32.2
+angle_max = 268.7
+scale_amount_min = 0.15
+scale_amount_max = 0.3
+
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 250
+
+[node name="Bush" type="TextureRect" parent="MarginContainer4"]
+layout_mode = 2
+texture = ExtResource("3_87bt6")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 475
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("2_2kk2e")
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 365
+theme_override_constants/margin_right = 300
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_oimi2")
+texture_pressed = ExtResource("6_k03g2")
+texture_hover = ExtResource("7_imxj1")
+texture_focused = ExtResource("8_rfvxu")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("10_6r13r")
+texture_pressed = ExtResource("11_uk8dh")
+texture_hover = ExtResource("12_3nsh1")
+texture_focused = ExtResource("13_8vcsc")
+
+[node name="MarginContainer5" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]

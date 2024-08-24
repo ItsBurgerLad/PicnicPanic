@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkglfqina6n4s"]
+
+[ext_resource type="AudioStream" uid="uid://efpmo7onjo4u" path="res://Assets/Audio/Sheep May Safely Graze - BWV 208.mp3" id="1_qhqro"]
+[ext_resource type="Script" path="res://UI/main_menu_music.gd" id="2_uk6iu"]
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_qhqro")
+volume_db = -9.0
+script = ExtResource("2_uk6iu")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt3s46chcobm4"]
+
+[ext_resource type="Script" path="res://Entities/Food/food_item_2.gd" id="1_qaeyu"]
+[ext_resource type="Texture2D" uid="uid://bfmv1rf21o3xw" path="res://Assets/Prototyping/FoodProto.png" id="2_ej68i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sow4o"]
+radius = 63.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43tuj"]
+radius = 68.0661
+
+[node name="Apple" type="RigidBody2D"]
+script = ExtResource("1_qaeyu")
+
+[node name="FoodCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sow4o")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="DetectorCollider" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_43tuj")
+debug_color = Color(0.975874, 0, 0.416134, 0.42)
+
+[node name="FoodProtoSprite" type="Sprite2D" parent="PlayerDetector"]
+texture = ExtResource("2_ej68i")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

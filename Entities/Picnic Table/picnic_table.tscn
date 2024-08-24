@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://qqmfogqkuw8m"]
+
+[ext_resource type="Script" path="res://Entities/Picnic Table/picnic_table.gd" id="1_7wrfh"]
+[ext_resource type="Texture2D" uid="uid://6pq2c8h2jmdv" path="res://Assets/Sprites/Picnic Table/PicnicTable_Transparent.png" id="2_movjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05ae4"]
+size = Vector2(1658, 834)
+
+[node name="PicnicTable" type="Area2D"]
+scale = Vector2(1.15, 1.15)
+collision_layer = 0
+script = ExtResource("1_7wrfh")
+
+[node name="PlayerNoticeCollider" type="CollisionShape2D" parent="."]
+position = Vector2(960, 655)
+shape = SubResource("RectangleShape2D_05ae4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(953.778, 535.5)
+scale = Vector2(1.49028, 1.49028)
+texture = ExtResource("2_movjs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

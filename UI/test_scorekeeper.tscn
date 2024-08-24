@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvrrq5aqtoom6"]
+
+[ext_resource type="Script" path="res://UI/test_scorekeeper.gd" id="1_q48lg"]
+[ext_resource type="Texture2D" uid="uid://bqah2alya552s" path="res://Assets/UI/FansBox.png" id="2_qqgu4"]
+[ext_resource type="FontFile" uid="uid://ck2or8uouxlg" path="res://UI/LTSaeada-ExtraBold.otf" id="3_1ftud"]
+[ext_resource type="FontFile" uid="uid://bvakc1furn7ig" path="res://UI/Coffee Spark.ttf" id="4_c8xei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_17ajp"]
+font = ExtResource("3_1ftud")
+font_size = 35
+font_color = Color(0.184314, 0.027451, 0.0156863, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_olfhx"]
+font = ExtResource("4_c8xei")
+font_size = 50
+font_color = Color(0.760784, 0.580392, 0.196078, 1)
+
+[node name="TestScorekeeper" type="CanvasLayer"]
+script = ExtResource("1_q48lg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 765
+theme_override_constants/margin_bottom = 500
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("2_qqgu4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 905
+theme_override_constants/margin_bottom = 550
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 115
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Fame Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Fans:"
+label_settings = SubResource("LabelSettings_17ajp")
+
+[node name="NumberTracker" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_olfhx")

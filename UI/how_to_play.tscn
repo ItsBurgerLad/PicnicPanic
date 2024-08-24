@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://cdwbiobg2ypc4"]
+
+[ext_resource type="Texture2D" uid="uid://drr6ledaeho4n" path="res://Assets/UI/MainMenuBG.png" id="1_75erh"]
+[ext_resource type="Script" path="res://UI/how_to_play.gd" id="1_yh6ev"]
+[ext_resource type="FontFile" uid="uid://bvakc1furn7ig" path="res://UI/Coffee Spark.ttf" id="2_duxoh"]
+[ext_resource type="FontFile" uid="uid://d2dyx0khyu6nq" path="res://UI/LTSaeada-Regular.otf" id="3_knhoc"]
+[ext_resource type="Texture2D" uid="uid://clbi8q7wmbijy" path="res://Assets/UI/MainMenu_Normal.png" id="4_hx6v0"]
+[ext_resource type="Texture2D" uid="uid://do84ydbytskca" path="res://Assets/UI/MainMenu_Pressed.png" id="5_ryomr"]
+[ext_resource type="Texture2D" uid="uid://bnoul851ybvcl" path="res://Assets/UI/MainMenu_HoverFocused.png" id="6_7jlw5"]
+[ext_resource type="Texture2D" uid="uid://bgujjvyke4w4m" path="res://Assets/UI/MainMenu_Focused.png" id="7_uj7ex"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t0ebu"]
+font = ExtResource("2_duxoh")
+font_size = 100
+font_color = Color(0.184314, 0.027451, 0.0156863, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4egix"]
+font = ExtResource("3_knhoc")
+font_size = 30
+font_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[node name="How To Play" type="CanvasLayer"]
+script = ExtResource("1_yh6ev")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_75erh")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "How To Play"
+label_settings = SubResource("LabelSettings_t0ebu")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "You are a worker ant and your queen is in need of food!
+
+Use the A & D keys or Left & Right Arrow keys to move.
+
+Use Spacebar, W, or Up Arrow to jump.
+
+Use the J key to dash out of the way of incoming human feet -
+ watch out, they'll stomp you!"
+label_settings = SubResource("LabelSettings_4egix")
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 480
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("4_hx6v0")
+texture_pressed = ExtResource("5_ryomr")
+texture_hover = ExtResource("6_7jlw5")
+texture_focused = ExtResource("7_uj7ex")
+stretch_mode = 3
+
+[connection signal="pressed" from="MarginContainer3/TextureButton" to="." method="_on_texture_button_pressed"]

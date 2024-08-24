@@ -1,0 +1,160 @@
+[gd_scene load_steps=16 format=3 uid="uid://csx5q8k8kogg6"]
+
+[ext_resource type="Script" path="res://Common/Prototyping/test_world.gd" id="1_ogfr8"]
+[ext_resource type="PackedScene" uid="uid://dnvw1lv33usv1" path="res://Entities/Player/ant_player_character.tscn" id="1_osljq"]
+[ext_resource type="PackedScene" uid="uid://dpjjyqhp6v6ke" path="res://Entities/Ant Hill/ant_hill.tscn" id="1_ynejb"]
+[ext_resource type="PackedScene" uid="uid://qqmfogqkuw8m" path="res://Entities/Picnic Table/picnic_table.tscn" id="2_0p86c"]
+[ext_resource type="Texture2D" uid="uid://b20x70e80oj8v" path="res://Assets/Sprites/BG/ParkBG.png" id="2_gidfh"]
+[ext_resource type="PackedScene" uid="uid://cvrrq5aqtoom6" path="res://UI/test_scorekeeper.tscn" id="4_vxi38"]
+[ext_resource type="PackedScene" uid="uid://o6vs4lwaahv5" path="res://Stages/ground.tscn" id="6_f6g43"]
+[ext_resource type="PackedScene" uid="uid://barxlcex15aan" path="res://Stages/barrier_bush.tscn" id="8_v1r0i"]
+[ext_resource type="Texture2D" uid="uid://ccv7mty0jpsrf" path="res://Assets/Sprites/Enemies/WarningSymbol2.png" id="9_ta5tn"]
+[ext_resource type="PackedScene" uid="uid://bpgr51mrhhw6q" path="res://UI/game_over_screen.tscn" id="10_x7eo2"]
+[ext_resource type="PackedScene" uid="uid://en7kfdwniqqe" path="res://UI/pause_menu.tscn" id="11_i7meu"]
+[ext_resource type="Texture2D" uid="uid://cw8m3pxcwy6oq" path="res://Assets/UI/Leaf_Particle.png" id="12_7xfyn"]
+[ext_resource type="AudioStream" uid="uid://di1oifuhin3vc" path="res://Assets/Audio/158572__zabuhailo__omsk_victory_park_4.wav" id="13_xnou0"]
+[ext_resource type="AudioStream" uid="uid://cpvfmkvlwpyt2" path="res://Assets/Audio/error_003.ogg" id="14_l7dce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f23rb"]
+size = Vector2(4147, 1295)
+
+[node name="TestWorld" type="Node2D"]
+script = ExtResource("1_ogfr8")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(9014.47, 665.75)
+scale = Vector2(1.80486, 1.80486)
+texture = ExtResource("2_gidfh")
+
+[node name="Tables" type="Node2D" parent="."]
+
+[node name="PicnicTable" parent="Tables" instance=ExtResource("2_0p86c")]
+position = Vector2(5889, 36)
+
+[node name="AntPlayerCharacter" parent="." instance=ExtResource("1_osljq")]
+position = Vector2(665, 1137)
+speed = 700.0
+friction = 3000.0
+jump_velocity = -800.0
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="AntPlayerCharacter"]
+position = Vector2(488, -472)
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 22
+limit_right = 9430
+
+[node name="TestScorekeeper" parent="AntPlayerCharacter/Camera2D" instance=ExtResource("4_vxi38")]
+
+[node name="DropCooldownTimer" type="Timer" parent="."]
+wait_time = 3.5
+
+[node name="EnemyCooldownTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="WarningTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Ground Tiles" type="Node2D" parent="."]
+position = Vector2(0, 127)
+
+[node name="Ground" parent="Ground Tiles" instance=ExtResource("6_f6g43")]
+position = Vector2(638, 483)
+
+[node name="Ground2" parent="Ground Tiles" instance=ExtResource("6_f6g43")]
+position = Vector2(2262, 483)
+
+[node name="Ground3" parent="Ground Tiles" instance=ExtResource("6_f6g43")]
+position = Vector2(3549, 483)
+
+[node name="Ground4" parent="Ground Tiles" instance=ExtResource("6_f6g43")]
+position = Vector2(5065, 483)
+
+[node name="Ground5" parent="Ground Tiles" instance=ExtResource("6_f6g43")]
+position = Vector2(6691, 483)
+
+[node name="Ground6" parent="Ground Tiles" instance=ExtResource("6_f6g43")]
+position = Vector2(8204, 483)
+
+[node name="AntHill" parent="." instance=ExtResource("1_ynejb")]
+position = Vector2(-31, 683)
+
+[node name="RespawnPoint" type="Marker2D" parent="."]
+position = Vector2(665, 1136)
+
+[node name="Step Zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Step Zone"]
+position = Vector2(3871.5, 637.5)
+shape = SubResource("RectangleShape2D_f23rb")
+debug_color = Color(0.99007, 0.0583372, 0.19659, 0.42)
+
+[node name="BarrierBush" parent="." instance=ExtResource("8_v1r0i")]
+position = Vector2(8853, 966)
+
+[node name="WarningSymbol" type="Sprite2D" parent="."]
+position = Vector2(1352, 1100)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_ta5tn")
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_i7meu")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("10_x7eo2")]
+process_mode = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(9500, 500)
+amount = 12
+lifetime = 10.0
+randomness = 1.0
+texture = ExtResource("12_7xfyn")
+direction = Vector2(-1, 0)
+initial_velocity_min = 432.09
+initial_velocity_max = 940.31
+angular_velocity_min = -42.99
+angular_velocity_max = 214.93
+angle_min = -32.2
+angle_max = 268.7
+scale_amount_min = 0.15
+scale_amount_max = 0.3
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(0, 500)
+amount = 12
+lifetime = 10.0
+randomness = 1.0
+texture = ExtResource("12_7xfyn")
+initial_velocity_min = 432.09
+initial_velocity_max = 940.31
+angular_velocity_min = -42.99
+angular_velocity_max = 214.93
+angle_min = -32.2
+angle_max = 268.7
+scale_amount_min = 0.15
+scale_amount_max = 0.3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_xnou0")
+volume_db = -9.0
+max_distance = 10000.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_l7dce")
+
+[connection signal="player_gone" from="Tables/PicnicTable" to="." method="_on_picnic_table_player_gone"]
+[connection signal="player_ready" from="Tables/PicnicTable" to="." method="_on_picnic_table_player_ready"]
+[connection signal="died" from="AntPlayerCharacter" to="." method="_on_ant_player_character_died"]
+[connection signal="timeout" from="DropCooldownTimer" to="." method="_on_drop_cooldown_timer_timeout"]
+[connection signal="timeout" from="EnemyCooldownTimer" to="." method="_on_enemy_cooldown_timer_timeout"]
+[connection signal="timeout" from="WarningTimer" to="." method="_on_warning_timer_timeout"]
+[connection signal="body_entered" from="AntHill" to="." method="_on_ant_hill_body_entered"]
+[connection signal="body_exited" from="AntHill" to="." method="_on_ant_hill_body_exited"]
+[connection signal="body_entered" from="Step Zone" to="." method="_on_step_zone_body_entered"]
+[connection signal="body_exited" from="Step Zone" to="." method="_on_step_zone_body_exited"]
+[connection signal="quit_requested" from="PauseMenu" to="." method="_on_pause_menu_quit_requested"]
+[connection signal="restart_requested" from="PauseMenu" to="." method="_on_pause_menu_restart_requested"]
+[connection signal="resume_requested" from="PauseMenu" to="." method="_on_pause_menu_resume_requested"]
+[connection signal="exit_to_menu" from="GameOverScreen" to="." method="_on_game_over_screen_exit_to_menu"]
+[connection signal="retry_requested" from="GameOverScreen" to="." method="_on_game_over_screen_retry_requested"]
